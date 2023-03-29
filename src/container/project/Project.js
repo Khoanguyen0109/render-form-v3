@@ -22,7 +22,7 @@ function Project(props) {
       setLoading(true);
       const res = await axios.get(
         // 'https://script.google.com/macros/s/AKfycbwc6zsfumMrVjMwaSnku8NZxL2t5WJjtBK2LlXSkzx1CGptTvtjc4EBl5sBxnYqXJdgXQ/exec'
-        'http://localhost:5000/api/form-template',
+        `${process.env.REACT_APP_API_END_POINT}api/form-template`,
       );
       setData(res.data.data);
       const unique = [...new Map(res.data.data.map((item) => [item.id_form_template, item])).values()];
