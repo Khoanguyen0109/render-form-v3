@@ -65,7 +65,7 @@ function Project(props) {
             <ProjectSorting>
               <div className="project-sort-bar">
                 <div className="project-sort-nav">
-                  <nav>
+                  {/* <nav>
                     <ul>
                       <li className={category === 'all' ? 'active' : 'deactivate'}>
                         <Link onClick={() => onChangeCategory('all')} to="#">
@@ -93,7 +93,7 @@ function Project(props) {
                         </Link>
                       </li>
                     </ul>
-                  </nav>
+                  </nav> */}
                 </div>
                 <div className="project-sort-search">
                   <Search

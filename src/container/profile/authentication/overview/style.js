@@ -4,6 +4,7 @@ const Aside = Styled.aside`
   width: 100%;
   height: 100vh;
   position: relative;
+  colo: 'white';
   background-image: url("${require('../../../../static/img/auth/BG.png')}");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -100,6 +101,7 @@ const AuthWrapper = Styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
     form{
       width: 420px;
       h1{

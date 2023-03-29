@@ -69,7 +69,7 @@ function SignIn() {
             </Button>
           </Form.Item>
           <p className="form-divider">
-            <span>Or</span>
+            <span>O</span>
           </p>
           {/* <ul className="social-login">
             <li>
@@ -90,6 +90,10 @@ function SignIn() {
             </li>
           </ul> */}
         </Form>
+      </div>
+      <div style={{ textAlign: 'end' }}>
+        <div>Người thực hiện: Lương Nhật Thanh</div>
+        <div>Đơn vị: Chi cục thống kê khu vực Sơn Trà - Ngũ Hành Sơn</div>
       </div>
     </AuthWrapper>
   );
