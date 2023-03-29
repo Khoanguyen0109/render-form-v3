@@ -42,7 +42,7 @@ function GridCard({ value }) {
           </div>
           <p className="project-desc">
             {textRefactor(
-              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam nihil laudantium minima quam fuga cum fugiat sapiente illo? Sapiente magnam est blanditiis rem accusantium. Unde, molestiae. Voluptatum eos quo architecto?',
+              des_form,
               15,
             )}
           </p>

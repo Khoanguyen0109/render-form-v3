@@ -82,8 +82,7 @@ function FormDetail(props) {
       rows.push(rowItem);
       return {};
     });
-    console.log('rowItem', rows);
-    console.log('user :>> ', user);
+
     const res = await axios.post(`${process.env.REACT_APP_API_END_POINT}/api/form`, {
       formId,
       formName,
