@@ -64,7 +64,7 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.17.4"
   },
-  "homepage": "/strikingdash-react",
+  "homepage": "/",
   "scripts": {
     "start": "craco start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && craco  build",
