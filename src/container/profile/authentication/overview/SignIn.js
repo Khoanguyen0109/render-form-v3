@@ -45,9 +45,7 @@ function SignIn() {
       </p> */}
       <div className="auth-contents">
         <Form name="login" form={form} onFinish={handleSubmit} layout="vertical">
-          <Heading as="h3">
-            Tổng cục <span className="color-secondary">Thống kê</span>
-          </Heading>
+          <Heading as="h3">Cục Thống kê thành phố Đà Nẵng </Heading>
           <Form.Item
             name="username"
             rules={[{ message: 'Vui lòng nhập tên đăng nhập', required: true }]}
@@ -56,7 +54,7 @@ function SignIn() {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="password" initialValue="123456" label="Password">
+          <Form.Item name="password" initialValue="123456" label="Mật Khẩu">
             <Input.Password placeholder="Password" />
           </Form.Item>
           {/* <div className="auth-form-action">

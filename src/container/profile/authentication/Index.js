@@ -16,7 +16,7 @@ const AuthLayout = (WraperContent) => {
                 <img style={{ width: '150px' }} src={require('../../../static/img/Logo_Dark.svg')} alt="" />
                 <br />
                 <br />
-                <Heading as="h1">Hệ thống biểu mẫu khảo sát</Heading>
+                <Heading as="h1">Hệ thống biểu mẫu kiểm tra, giám sát điều tra.</Heading>
                 <img
                   className="auth-content-figure"
                   src={require('../../../static/img/auth/Illustration.png')}

@@ -27,7 +27,7 @@ function AuthInfo() {
     <UserDropDwon>
       <div className="user-dropdwon">
         <Link className="user-dropdwon__bottomAction" onClick={SignOut} to="#">
-          <FeatherIcon icon="log-out" /> Sign Out
+          <FeatherIcon icon="log-out" /> Đăng xuất
         </Link>
       </div>
     </UserDropDwon>
