@@ -21,7 +21,7 @@ const AuthLayout = (WraperContent) => {
                 </Heading>
                 <img
                   className="auth-content-figure"
-                  src={require('../../../static/img/auth/Illustration.png')}
+                  src={require('../../../static/img/Picture1.png')}
                   // src="https://static.vecteezy.com/system/resources/thumbnails/008/823/126/small/business-candle-stick-graph-chart-of-stock-market-investment-trading-on-blue-background-bullish-point-up-trend-of-graph-economy-design-vector.jpg"
                   alt=""
                 />

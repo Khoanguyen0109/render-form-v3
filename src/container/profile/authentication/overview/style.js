@@ -51,11 +51,16 @@ const Content = Styled.div`
       text-align: center;
     }
     .auth-content-figure{
-      @media only screen and (max-width: 1199px){
-        max-width: 420px;
+      @media only screen and (max-width: 3000px){
+        object-fit: fill;
+        max-width: 620px;
+        height: 420px;
       }
       @media only screen and (max-width: 991px){
+        object-fit: fill;
         max-width: 100%;
+        height: 320px;
+
       }
     }
 `;
