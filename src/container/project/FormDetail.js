@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { groupBy, mapValues } from 'lodash';
+import { groupBy, isEmpty, mapValues } from 'lodash';
 import qs from 'qs';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
@@ -53,7 +53,7 @@ function FormDetail(props) {
     history.push('/admin');
   };
   const user = useSelector((state) => state.auth.login);
-  console.log('user', user)
+  console.log('user', user);
   const grouped = mapValues(groupBy(formFields, 'step'), (clist) => clist);
   //   var grouped = mapValues(groupBy(formFields, 'steps'), (clist) =>
   //   clist.map((item) => mapValues(groupBy(item, 'name_field'), (item) => item))
@@ -63,25 +63,41 @@ function FormDetail(props) {
 
   const next = (value) => {
     console.log('value :>> ', value);
-    setFormData({ ...value, ...formData });
     setCurrent(current + 1);
+    setFormData({ ...value, ...formData });
   };
+  console.log('value :>> ', current);
   const prev = () => {
     setCurrent(current - 1);
   };
   const onSubmit = async () => {
     const formId = uuidv4();
+    console.log('formData', formData);
 
     const rows = [];
     Object.keys(formData).map((key) => {
-      const rowItem = {
-        id_form: formId,
-        id_field: key,
-        value: formData[key],
-      };
-      rows.push(rowItem);
+      if (typeof formData[key] === 'object' && formData[key] !== null) {
+        console.log('key :>> ', key);
+        Object.keys(formData[key]).map((key2) => {
+          const rowItem = {
+            id_form: formId,
+            id_field: `${key}_${key2}`,
+            value: formData[key][key2],
+          };
+          return rows.push(rowItem);
+        });
+      } else {
+        const rowItem = {
+          id_form: formId,
+          id_field: key,
+          value: formData[key],
+        };
+        rows.push(rowItem);
+      }
+
       return {};
     });
+    console.log('rows', rows);
 
     const res = await axios.post(`${process.env.REACT_APP_API_END_POINT}/api/form`, {
       formId,
@@ -98,19 +114,18 @@ function FormDetail(props) {
 
   const steps = Object.values(groupByField).map((tab, idx) => {
     const isLast = idx === Object.values(groupByField).length - 1;
+    console.log('isLast :>> ', isLast);
     return {
-      content: (
-        <DetailTab
-          idx={idx}
-          items={tab}
-          isLast={isLast}
-          formData={formData}
-          onSubmit={isLast ? onSubmit : next}
-          onBackTab={prev}
-        />
-      ),
+      content: <DetailTab idx={idx} items={tab} isLast={isLast} formData={formData} onSubmit={next} onBackTab={prev} />,
     };
   });
+  useEffect(() => {
+    console.log('Object.values(groupByField).length :>> ', Object.values(groupByField).length);
+    console.log('current', current)
+    if (current === Object.values(groupByField).length && !isEmpty(formData) ) {
+      onSubmit();
+    }
+  }, [current]);
 
   const addRows = () => {
     // const range = 'Form Sumit!A2';

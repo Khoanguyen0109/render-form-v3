@@ -5,6 +5,7 @@ import { Row, Col, Form, Input, Upload, Select, DatePicker, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import { every, some, trim } from 'lodash';
+import AddressFromField from './AddressFrom';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
@@ -16,6 +17,7 @@ function DetailTab(props) {
   const { items, formData, idx, isLast, onSubmit, onBackTab } = props;
   const [form] = Form.useForm();
   const handleSubmit = (values) => {
+    console.log('values :>> ', values);
     onSubmit(values);
   };
 
@@ -76,6 +78,13 @@ function DetailTab(props) {
         return (
           <Form.Item {...itemProps}>
             <TextArea rows={4} />
+          </Form.Item>
+        );
+      }
+      case 'address': {
+        return (
+          <Form.Item {...itemProps}>
+            <AddressFromField />
           </Form.Item>
         );
       }
