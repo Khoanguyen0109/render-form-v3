@@ -53,8 +53,8 @@ const Content = Styled.div`
     .auth-content-figure{
       @media only screen and (max-width: 3000px){
         object-fit: fill;
-        max-width: 620px;
-        height: 420px;
+        max-width: 480px;
+        height: 320px;
       }
       @media only screen and (max-width: 991px){
         object-fit: fill;
