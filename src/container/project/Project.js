@@ -116,14 +116,14 @@ function Project(props) {
                       <Select.Option value="time">Newest</Select.Option>
                       <Select.Option value="price">Price</Select.Option>
                     </Select> */}
-                    <div className="layout-style">
+                    {/* <div className="layout-style">
                       <NavLink to={`${path}/grid`}>
                         <FeatherIcon icon="grid" size={16} />
                       </NavLink>
                       <NavLink to={`${path}/list`}>
                         <FeatherIcon icon="list" size={16} />
                       </NavLink>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
