@@ -16,19 +16,20 @@ function AddressFromField(props) {
   const [village, setVillage] = useState([]);
   const [location, setLocation] = useState('');
   const provinceAPI = 'https://provinces.open-api.vn/api';
-  const getData = async () => {
-    try {
-      const res = await axios.get(`${provinceAPI}/`);
-      const map = res.data.map((item) => ({ id: item.code, value: item.name, label: item.name }));
-      setProvince(map);
-    } catch (error) {
-      console.log('error :>> ', error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const res = await axios.get(`${provinceAPI}/`);
+  //     const map = res.data.map((item) => ({ id: item.code, value: item.name, label: item.name }));
+  //     setProvince(map);
+  //   } catch (error) {
+  //     console.log('error :>> ', error);
+  //   }
+  // };
   const getDistrict = async () => {
     try {
       console.log('province :>> ', province);
-      const code = province.find((item) => item.value === data.province).id;
+      // const code = province.find((item) => item.value === data.province).id;
+      const code = 48 /// Da Nang
       const res = await axios.get(`${provinceAPI}/p/${code}?depth=2`);
       const map = res.data.districts.map((item) => ({ id: item.code, value: item.name, label: item.name }));
       setDistrict(map);
@@ -46,14 +47,14 @@ function AddressFromField(props) {
       console.log('error :>> ', error);
     }
   };
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   useEffect(() => {
-    if (data.province) {
+    // if (data.province) {
       getDistrict();
-    }
+    // }
   }, [data.province]);
   useEffect(() => {
     if (data.district) {
@@ -71,7 +72,7 @@ function AddressFromField(props) {
   console.log('data', data);
   return (
     <div>
-      <div style={{ marginBottom: '12px' }}>
+      {/* <div style={{ marginBottom: '12px' }}>
         <Typography style={{ textAlign: 'left', fontWeight: '400', fontSize: '14px' }}>Tỉnh Thành</Typography>
         <Select
           value={data.province}
@@ -82,7 +83,7 @@ function AddressFromField(props) {
           style={{ width: '100%' }}
           options={province}
         />
-      </div>
+      </div> */}
       <div style={{ marginBottom: '12px' }}>
         <Typography style={{ textAlign: 'left', fontWeight: '400', fontSize: '14px' }}>Quận, Huyện</Typography>
         <Select
