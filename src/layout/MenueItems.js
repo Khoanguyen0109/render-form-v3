@@ -42,14 +42,14 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
       overflowedIndicator={<FeatherIcon icon="more-vertical" />}
       openKeys={openKeys}
     >
-      <Menu.Item key="home">
+      <Menu.Item key="home" icon={<FeatherIcon icon="archive" />}>
         <NavLink onClick={toggleCollapsed} to={`${path}`}>
-          Tạo Form
+          <span style={{ marginRight: '8px' }}>Tạo Form</span>
         </NavLink>
       </Menu.Item>
     </Menu>
   );
-}
+};
 
 MenuItems.propTypes = {
   darkMode: propTypes.bool,

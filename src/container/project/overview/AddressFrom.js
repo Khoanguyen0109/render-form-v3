@@ -4,13 +4,8 @@ import { Input, Select, Typography } from 'antd';
 
 function AddressFromField(props) {
   const { type, value, onChange } = props;
-
-  const [data, setData] = useState({
-    province: '',
-    district: '',
-    village: '',
-    location: '',
-  });
+  console.log('value', value);
+  const [data, setData] = useState(value);
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
   const [village, setVillage] = useState([]);
@@ -27,9 +22,8 @@ function AddressFromField(props) {
   // };
   const getDistrict = async () => {
     try {
-      console.log('province :>> ', province);
       // const code = province.find((item) => item.value === data.province).id;
-      const code = 48 /// Da Nang
+      const code = 48; /// Da Nang
       const res = await axios.get(`${provinceAPI}/p/${code}?depth=2`);
       const map = res.data.districts.map((item) => ({ id: item.code, value: item.name, label: item.name }));
       setDistrict(map);
@@ -37,12 +31,16 @@ function AddressFromField(props) {
       console.log('error :>> ', error);
     }
   };
+  console.log('district :>> ', district);
+  console.log('data.district', data.district);
   const getVillage = async () => {
     try {
       const code = district.find((item) => item.value === data.district).id;
-      const res = await axios.get(`${provinceAPI}/d/${code}?depth=2`);
-      const map = res.data.wards.map((item) => ({ id: item.code, value: item.name, label: item.name }));
-      setVillage(map);
+      if (code) {
+        const res = await axios.get(`${provinceAPI}/d/${code}?depth=2`);
+        const map = res.data.wards.map((item) => ({ id: item.code, value: item.name, label: item.name }));
+        setVillage(map);
+      }
     } catch (error) {
       console.log('error :>> ', error);
     }
@@ -53,14 +51,14 @@ function AddressFromField(props) {
 
   useEffect(() => {
     // if (data.province) {
-      getDistrict();
+    getDistrict();
     // }
   }, [data.province]);
   useEffect(() => {
     if (data.district) {
       getVillage();
     }
-  }, [data.district]);
+  }, [data.district, district]);
 
   const onChangeData = (key, value) => {
     setData((pre) => ({ ...pre, [key]: value }));

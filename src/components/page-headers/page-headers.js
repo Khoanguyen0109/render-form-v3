@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { PageHeaderStyle } from './style';
 
-const PageHeader = props => {
+const PageHeader = (props) => {
   const { title, subTitle, routes, buttons, ghost, bgColor, className } = props;
   return (
     <>
       <div
-        style={{
-          backgroundColor: bgColor || '#F4F5F7',
-        }}
+        style={
+          {
+            // backgroundColor: bgColor || '#F4F5F7',
+          }
+        }
       >
         <PageHeaderStyle
           style={{
-            backgroundColor: 'rgb(244, 245, 247)',
+            // backgroundColor: 'rgb(244, 245, 247)',
+            backgroundImage:
+              "url('https://static.vecteezy.com/system/resources/previews/011/561/871/original/aesthetic-abstract-modern-brown-background-illustration-perfect-for-wallpaper-backdrop-postcard-background-banner-vector.jpg')",
+            marginBottom: '12px',
           }}
           // onBack={() => window.history.back()}
           className={className}

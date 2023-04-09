@@ -15,7 +15,7 @@ function GridCard({ value }) {
   const { path } = useRouteMatch();
   const history = useHistory();
   const { id_form_template, name_form, status, des_form } = value;
-
+  
   const go = () => {};
   return (
     <ProjectCard>

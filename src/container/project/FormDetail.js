@@ -53,7 +53,6 @@ function FormDetail(props) {
     history.push('/admin');
   };
   const user = useSelector((state) => state.auth.login);
-  console.log('user', user);
   const grouped = mapValues(groupBy(formFields, 'step'), (clist) => clist);
   //   var grouped = mapValues(groupBy(formFields, 'steps'), (clist) =>
   //   clist.map((item) => mapValues(groupBy(item, 'name_field'), (item) => item))
@@ -62,22 +61,18 @@ function FormDetail(props) {
   const groupByField = Object.values(grouped).map((item) => groupBy(item, 'name_field'));
 
   const next = (value) => {
-    console.log('value :>> ', value);
     setCurrent(current + 1);
     setFormData({ ...value, ...formData });
   };
-  console.log('value :>> ', current);
   const prev = () => {
     setCurrent(current - 1);
   };
   const onSubmit = async () => {
     const formId = uuidv4();
-    console.log('formData', formData);
 
     const rows = [];
     Object.keys(formData).map((key) => {
       if (typeof formData[key] === 'object' && formData[key] !== null) {
-        console.log('key :>> ', key);
         Object.keys(formData[key]).map((key2) => {
           const rowItem = {
             id_form: formId,
@@ -120,9 +115,7 @@ function FormDetail(props) {
     };
   });
   useEffect(() => {
-    console.log('Object.values(groupByField).length :>> ', Object.values(groupByField).length);
-    console.log('current', current)
-    if (current === Object.values(groupByField).length && !isEmpty(formData) ) {
+    if (current === Object.values(groupByField).length && !isEmpty(formData)) {
       onSubmit();
     }
   }, [current]);
@@ -164,11 +157,11 @@ function FormDetail(props) {
         ghost
         title={formName}
         onBack={onBack}
-        buttons={[
-          <Button onClick={showDrawer} type="primary" key="3">
-            Tìm kiếm form liên quan
-          </Button>,
-        ]}
+        // buttons={[
+        //   <Button onClick={showDrawer} type="primary" key="3">
+        //     Tìm kiếm form liên quan
+        //   </Button>,
+        // ]}
       />
 
       <Main>

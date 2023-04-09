@@ -52,6 +52,9 @@ const ProjectSorting = Styled.div`
             }
         }
     }
+    .project-sort-search{
+        margin-top: 12px
+    }
     @media (max-width: 1500px){
         .project-sort-search{
             .ant-select{
@@ -88,7 +91,6 @@ const ProjectSorting = Styled.div`
         .project-sort-search{
             flex: 0 0 100%;
             order: 0;
-            margin-bottom: 25px;
             display: flex;
             justify-content: center;
             .ant-select{
@@ -257,7 +259,8 @@ const ProjectCard = Styled.div`
         align-items: flex-start;
         justify-content: space-between;
         h1{
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: 800;
             display: flex;
             flex-wrap: wrap;
             align-items: center;

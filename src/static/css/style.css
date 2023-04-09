@@ -2257,7 +2257,7 @@ html[dir='rtl'] .sDash_task-details .ant-modal-body .sDash_checklist-row .sDash_
     max-width: 100%;
   }
   .ant-page-header-heading .ant-page-header-heading-title {
-    margin-right: 0;
+    margin-right: 12px;
     white-space: normal;
     text-align: center;
   }

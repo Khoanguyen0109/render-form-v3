@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import { every, some, trim } from 'lodash';
 import AddressFromField from './AddressFrom';
+import RadioGroup from './RadioGroup';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
@@ -88,6 +89,13 @@ function DetailTab(props) {
           </Form.Item>
         );
       }
+      case 'checkbox-table': {
+        return (
+          <Form.Item {...itemProps} required={false} rules={{ required: false }}>
+            <RadioGroup option={i.option.split('/')} />
+          </Form.Item>
+        );
+      }
       default:
         break;
     }
@@ -117,14 +125,16 @@ function DetailTab(props) {
 
               <Form.Item>
                 <div className="add-user-bottom text-right">
-                  <Button
-                    className="ant-btn ant-btn-light"
-                    onClick={() => {
-                      onBackTab();
-                    }}
-                  >
-                    Trờ lại
-                  </Button>
+                  {idx !== 0 && (
+                    <Button
+                      className="ant-btn ant-btn-light"
+                      onClick={() => {
+                        onBackTab();
+                      }}
+                    >
+                      Trờ lại
+                    </Button>
+                  )}
                   <Button htmlType="submit" type="primary">
                     {isLast ? 'Hoàn tất' : 'Tiếp'}
                   </Button>

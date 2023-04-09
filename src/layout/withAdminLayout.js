@@ -9,12 +9,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import MenueItems from './MenueItems';
 import TopMenu from './TopMenu';
-import {
-  Div,
-  SmallScreenAuthInfo,
-  SmallScreenSearch,
-  TopMenuSearch,
-} from './style';
+import { Div, SmallScreenAuthInfo, SmallScreenSearch, TopMenuSearch } from './style';
 import HeaderSearch from '../components/header-search/header-search';
 import AuthInfo from '../components/utilities/auth-info/info';
 
@@ -164,27 +159,14 @@ const ThemeLayout = (WrappedComponent) => {
               }}
             >
               <Row>
-                <Col
-                  lg={!topMenu ? 4 : 3}
-                  sm={6}
-                  xs={12}
-                  className="align-center-v navbar-brand"
-                >
+                <Col lg={!topMenu ? 4 : 3} sm={6} xs={12} className="align-center-v navbar-brand">
                   {!topMenu || window.innerWidth <= 991 ? (
                     <Button type="link" onClick={toggleCollapsed}>
-                      {collapsed ? (
-                        <FeatherIcon icon="menu" />
-                      ) : (
-                        <FeatherIcon icon="menu" />
-                      )}
+                      {collapsed ? <FeatherIcon icon="menu" /> : <FeatherIcon icon="menu" />}
                     </Button>
                   ) : null}
                   <Link
-                    className={
-                      topMenu && window.innerWidth > 991
-                        ? 'striking-logo top-menu'
-                        : 'striking-logo'
-                    }
+                    className={topMenu && window.innerWidth > 991 ? 'striking-logo top-menu' : 'striking-logo'}
                     to="/admin"
                   >
                     {/* <img
@@ -199,11 +181,7 @@ const ThemeLayout = (WrappedComponent) => {
                 </Col>
 
                 <Col lg={!topMenu ? 14 : 15} md={8} sm={0} xs={0}>
-                  {topMenu && window.innerWidth > 991 ? (
-                    <TopMenu />
-                  ) : (
-                    <HeaderSearch rtl={rtl} darkMode={darkMode} />
-                  )}
+                  {topMenu && window.innerWidth > 991 ? <TopMenu /> : <HeaderSearch rtl={rtl} darkMode={darkMode} />}
                 </Col>
 
                 <Col lg={6} md={10} sm={0} xs={0}>
@@ -211,11 +189,7 @@ const ThemeLayout = (WrappedComponent) => {
                     <TopMenuSearch>
                       <div className="top-right-wrap d-flex">
                         <Link
-                          className={`${
-                            activeSearch
-                              ? 'search-toggle active'
-                              : 'search-toggle'
-                          }`}
+                          className={`${activeSearch ? 'search-toggle active' : 'search-toggle'}`}
                           onClick={() => {
                             toggleSearch();
                           }}
@@ -224,13 +198,7 @@ const ThemeLayout = (WrappedComponent) => {
                           <FeatherIcon icon="search" />
                           <FeatherIcon icon="x" />
                         </Link>
-                        <div
-                          className={`${
-                            activeSearch
-                              ? 'topMenu-search-form show'
-                              : 'topMenu-search-form'
-                          }`}
-                        >
+                        <div className={`${activeSearch ? 'topMenu-search-form show' : 'topMenu-search-form'}`}>
                           <form action="">
                             <span className="search-icon">
                               <FeatherIcon icon="search" />
@@ -283,12 +251,7 @@ const ThemeLayout = (WrappedComponent) => {
             <Layout>
               {!topMenu || window.innerWidth <= 991 ? (
                 <ThemeProvider theme={darkTheme}>
-                  <Sider
-                    width={280}
-                    style={SideBarStyle}
-                    collapsed={collapsed}
-                    theme={!darkMode ? 'light' : 'dark'}
-                  >
+                  <Sider width={280} style={SideBarStyle} collapsed={collapsed} theme={!darkMode ? 'light' : 'dark'}>
                     <Scrollbars
                       className="custom-scrollbar"
                       autoHide
@@ -316,9 +279,7 @@ const ThemeLayout = (WrappedComponent) => {
                   <Footer className="admin-footer" style={footerStyle}>
                     <Row>
                       <Col md={12} xs={24}>
-                        <span className="admin-footer__copyright">
-                          2023 © SovWare
-                        </span>
+                        <span className="admin-footer__copyright">2023 © SovWare</span>
                       </Col>
                       <Col md={12} xs={24}>
                         <div className="admin-footer__links">

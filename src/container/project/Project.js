@@ -53,11 +53,11 @@ function Project(props) {
   useEffect(() => {
     setFormList(list);
   }, [list]);
-
+  console.log('data :>> ', data);
   return (
     <>
       <ProjectHeader>
-        <PageHeader ghost title="Biểu mẫu" subTitle={<>Tổng số biểu mẫu {data.length}</>} />
+        <PageHeader ghost title="Biểu mẫu" subTitle={<>Tổng số biểu mẫu {list.length}</>} />
       </ProjectHeader>
       <Main>
         <Row gutter={25}>

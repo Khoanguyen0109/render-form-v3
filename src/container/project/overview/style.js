@@ -1224,6 +1224,10 @@ const AddUser = Styled.div`
   .ant-form-item{
     height: 76px
   }
+  .ant-form-item .ant-form-item-label label{
+    font-size: 16px;
+    font-weight: 600
+  }
   @media only screen and (max-width: 375px){
     .ant-form-item{
       height: auto
