@@ -47,6 +47,11 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
           <span style={{ marginRight: '8px' }}>Tạo Form</span>
         </NavLink>
       </Menu.Item>
+      <Menu.Item key="submitted" icon={<FeatherIcon icon="archive" />}>
+        <NavLink onClick={toggleCollapsed} to={`${path}/submitted`}>
+          <span style={{ marginRight: '8px' }}>Danh sách form nộp</span>
+        </NavLink>
+      </Menu.Item>
     </Menu>
   );
 };

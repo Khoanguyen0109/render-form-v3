@@ -1,6 +1,7 @@
 import Styled from 'styled-components';
 
 const Main = Styled.div`
+    margin-top: 10px;
     padding: 0px 30px 20px;
     min-height: 715px;
     background-color: rgb(244, 245, 247);

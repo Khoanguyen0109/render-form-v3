@@ -3,6 +3,8 @@ import { Spin } from 'antd';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import Dashboard from './dashboard';
+import Submitted from './submitted';
+
 import withAdminLayout from '../../layout/withAdminLayout';
 
 const Admin = () => {
@@ -10,17 +12,10 @@ const Admin = () => {
 
   return (
     <Switch>
-      <Suspense
-        fallback={
-          <div className="spin">
-            <Spin />
-          </div>
-        }
-      >
-        <Route path={path} component={Dashboard} />
-      </Suspense>
+      <Route path={`${path}/submitted`} component={Submitted} />
+      <Route path={path} component={Dashboard} />
     </Switch>
   );
-}
+};
 
 export default withAdminLayout(Admin);

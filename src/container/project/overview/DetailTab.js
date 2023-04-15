@@ -48,7 +48,7 @@ function DetailTab(props) {
           <Form.Item {...itemProps}>
             <Select style={{ width: '100%' }}>
               {i.option.split('/').map((option, index) => (
-                <Option key={option} value={option}>
+                <Option key={option} value={index}>
                   {option}
                 </Option>
               ))}
@@ -66,7 +66,7 @@ function DetailTab(props) {
           <Form.Item {...itemProps}>
             <Radio.Group>
               {i.option.split('/').map((option, index) => (
-                <Radio key={option} value="index">
+                <Radio key={option} value={index}>
                   {' '}
                   option{' '}
                 </Radio>

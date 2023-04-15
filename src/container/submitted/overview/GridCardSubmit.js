@@ -9,47 +9,39 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import { Dropdown } from '../../../components/dropdown/dropdown';
 import { textRefactor } from '../../../components/utilities/utilities';
-import { ProjectCard } from '../style';
+import { ProjectCard } from '../../project/style';
 
 function GridCard({ value }) {
   const { path } = useRouteMatch();
   const history = useHistory();
-  const { id_form_template, name_form, status, des_form } = value;
-  
-  const go = () => {};
+  const { idFormTemplate, formId, formName, username, created_date } = value;
   return (
     <ProjectCard>
       <Cards headless>
         <div className="project-top">
           <div className="project-title">
             <h1>
-              <Link to={`/admin/${id_form_template}`}>{name_form}</Link>
-              {/* <Link to={`${path}/${id_form_template}`}>{name_form}</Link> */}
-
-              <Tag className={status === 'Hoạt động' ? 'complete' : status}>{status}</Tag>
+              <Link to={`${path}/${formId}`}>{formName}</Link>
             </h1>
-            <Dropdown
+            {/* <Dropdown
               content={
                 <>
-                  <Link to={`${path}/${id_form_template}`}>Tạo Form</Link>
+                  <Link to={`${path}/${formId}`}>Tạo Form</Link>
                 </>
               }
             >
               <Link to="#">
                 <FeatherIcon icon="more-horizontal" size={18} />
               </Link>
-            </Dropdown>
+            </Dropdown> */}
           </div>
           <p className="project-desc">
-            {textRefactor(
-              des_form,
-              15,
-            )}
+            <span>Người tạo:</span> {username}
           </p>
           <div className="project-timing">
             <div>
               <span>Ngày tạo</span>
-              <strong>{format(new Date(), 'dd/MM/yyyy')}</strong>
+              <strong>{created_date}</strong>
             </div>
             {/* <div>
               <span>Deadline</span>

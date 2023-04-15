@@ -67,6 +67,7 @@ function FormDetail(props) {
   const prev = () => {
     setCurrent(current - 1);
   };
+
   const onSubmit = async () => {
     const formId = uuidv4();
 
@@ -74,10 +75,22 @@ function FormDetail(props) {
     Object.keys(formData).map((key) => {
       if (typeof formData[key] === 'object' && formData[key] !== null) {
         Object.keys(formData[key]).map((key2) => {
+          let key2Format = '';
+          switch (key2) {
+            case 'district':
+              key2Format = 'Quận/Huyện';
+              break;
+            case 'village':
+              key2Format = 'Thôn/Xã';
+              break;
+            default:
+              key2Format = key2;
+              break;
+          }
           const rowItem = {
             id_form: formId,
-            id_field: `${key}_${key2}`,
-            value: formData[key][key2],
+            id_field: `${key}_${key2Format}`,
+            value: formData[key][key2Format],
           };
           return rows.push(rowItem);
         });
@@ -85,6 +98,7 @@ function FormDetail(props) {
         const rowItem = {
           id_form: formId,
           id_field: key,
+          name_field: key.replaceAll('_', ' '),
           value: formData[key],
         };
         rows.push(rowItem);
@@ -93,7 +107,6 @@ function FormDetail(props) {
       return {};
     });
     console.log('rows', rows);
-
     const res = await axios.post(`${process.env.REACT_APP_API_END_POINT}/api/form`, {
       formId,
       formName,

@@ -87,7 +87,6 @@ function AddressFromField(props) {
         <Select
           value={data.district}
           onChange={(value) => {
-            console.log('value :>> ', value);
             onChangeData('district', value);
           }}
           style={{ width: '100%' }}
@@ -99,7 +98,6 @@ function AddressFromField(props) {
         <Select
           value={data.village}
           onChange={(value) => {
-            console.log('value :>> ', value);
             onChangeData('village', value);
           }}
           style={{ width: '100%' }}

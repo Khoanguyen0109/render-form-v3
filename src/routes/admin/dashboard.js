@@ -10,10 +10,8 @@ function DashboardRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={path} component={Project} />
       <Route exact path={`${path}/:formId`} component={FormDetail} />
-
-      <Route path={`${path}/social`} component={Dashboard} />
+      <Route exact path={path} component={Project} />
     </Switch>
   );
 }
