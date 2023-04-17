@@ -22,14 +22,17 @@ function DetailTab(props) {
     onSubmit(values);
   };
 
+  const formatLabel = (label) => {
+    return label.replaceAll(',', '').replaceAll(' ', '_');
+  };
   const switchItem = (i, index) => {
     const showLabel = index === 0;
+    const name = showLabel ? formatLabel(i.name_field) : formatLabel(i.name_field) + index;
+    const formatName = i.countingKey ? `${name}_count_${formatLabel(i.countingKey)}` : name;
     const itemProps = {
       label: showLabel && i.name_field,
       // name: i.id_field,
-      name: showLabel
-        ? i.name_field.replaceAll(',', '').replaceAll(' ', '_')
-        : i.name_field.replaceAll(',', '').replaceAll(' ', '_') + index,
+      name: formatName,
       initialValue: '',
       rules: [{ required: i.require === 'TRUE', message: 'Vui lòng nhập ô này' }],
       // hidden: mapLevel1.length > 0 && !some(mapLevel1),

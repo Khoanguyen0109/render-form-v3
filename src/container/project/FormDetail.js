@@ -4,7 +4,7 @@ import { Switch, Route, NavLink, useRouteMatch, useParams, Link } from 'react-ro
 import { v4 as uuidv4 } from 'uuid';
 
 import FeatherIcon from 'feather-icons-react';
-import propTypes from 'prop-types';
+import propTypes, { array } from 'prop-types';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { groupBy, isEmpty, mapValues } from 'lodash';
 import qs from 'qs';
@@ -68,11 +68,31 @@ function FormDetail(props) {
     setCurrent(current - 1);
   };
 
+  const calculateTotalPointValue = (arr) => {
+    if (arr.every((item) => item === 0)) {
+      return 'Tốt';
+    }
+    if ([...new Set(arr)].every((item) => item === 0 || item === 1) && arr.filter((item) => item === 1).length === 1) {
+      return 'Đạt';
+    }
+    return 'Không đạt';
+  };
+
   const onSubmit = async () => {
     const formId = uuidv4();
-
+    const mapCount = {};
     const rows = [];
     Object.keys(formData).map((key) => {
+      if (key.includes('_count_')) {
+        const countLabel = key.split('_count_')?.[1];
+        console.log('countLabel', countLabel);
+        // eslint-disable-next-line no-prototype-builtins
+        if (mapCount.hasOwnProperty(countLabel)) {
+          mapCount[countLabel].push(formData[key]);
+        } else {
+          mapCount[countLabel] = [formData[key]];
+        }
+      }
       if (typeof formData[key] === 'object' && formData[key] !== null) {
         Object.keys(formData[key]).map((key2) => {
           let key2Format = '';
@@ -106,7 +126,14 @@ function FormDetail(props) {
 
       return {};
     });
-    console.log('rows', rows);
+    Object.keys(mapCount).map((key) => {
+      const rowItem = {
+        id_form: formId,
+        id_field: key,
+        value: calculateTotalPointValue(mapCount[key]),
+      };
+      return rows.push(rowItem);
+    });
     const res = await axios.post(`${process.env.REACT_APP_API_END_POINT}/api/form`, {
       formId,
       formName,
@@ -127,7 +154,10 @@ function FormDetail(props) {
       content: <DetailTab idx={idx} items={tab} isLast={isLast} formData={formData} onSubmit={next} onBackTab={prev} />,
     };
   });
+  console.log('current', current);
+
   useEffect(() => {
+    console.log('group', Object.values(groupByField).length);
     if (current === Object.values(groupByField).length && !isEmpty(formData)) {
       onSubmit();
     }
