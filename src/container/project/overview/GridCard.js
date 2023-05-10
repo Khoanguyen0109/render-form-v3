@@ -41,7 +41,7 @@ function GridCard({ value }) {
             </Dropdown>
           </div>
           <p className="project-desc">
-            {textRefactor(
+            {des_form && textRefactor(
               des_form,
               15,
             )}

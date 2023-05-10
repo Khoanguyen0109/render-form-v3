@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Dropdown } from '../../../components/dropdown/dropdown';
-import { textRefactor } from '../../../components/utilities/utilities';
 import { ProjectCard } from '../../project/style';
 
 function GridCard({ value }) {

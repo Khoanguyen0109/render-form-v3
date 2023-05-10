@@ -23,13 +23,25 @@ function FormDetail(props) {
   const [list, setList] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const params = useParams();
+  const history = useHistory();
+  const [current, setCurrent] = useState(0);
+  const [formData, setFormData] = useState({});
+  const [open, setOpen] = useState(false);
+  const formFields = data.filter((item) => item.id_form_template === params.formId);
+  const formName = formFields[0]?.name_form;
+  const onBack = () => {
+    history.push('/admin');
+  };
   const getList = async () => {
     try {
       setLoading(true);
       const res = await axios.get(
         // 'https://script.google.com/macros/s/AKfycbwc6zsfumMrVjMwaSnku8NZxL2t5WJjtBK2LlXSkzx1CGptTvtjc4EBl5sBxnYqXJdgXQ/exec'
-        `${process.env.REACT_APP_API_END_POINT}/api/form-template`,
+        `${process.env.REACT_APP_API_END_POINT}/api/form-template/${params.formId}`,
       );
+
       setData(res.data.data);
       const unique = [...new Map(res.data.data.map((item) => [item.id_form_template, item])).values()];
       setList(unique);
@@ -42,16 +54,6 @@ function FormDetail(props) {
   useEffect(() => {
     getList();
   }, []);
-  const params = useParams();
-  const history = useHistory();
-  const [current, setCurrent] = useState(0);
-  const [formData, setFormData] = useState({});
-  const [open, setOpen] = useState(false);
-  const formFields = data.filter((item) => item.id_form_template === params.formId);
-  const formName = formFields[0]?.name_form;
-  const onBack = () => {
-    history.push('/admin');
-  };
   const user = useSelector((state) => state.auth.login);
   const grouped = mapValues(groupBy(formFields, 'step'), (clist) => clist);
   //   var grouped = mapValues(groupBy(formFields, 'steps'), (clist) =>
@@ -85,7 +87,6 @@ function FormDetail(props) {
     Object.keys(formData).map((key) => {
       if (key.includes('_count_')) {
         const countLabel = key.split('_count_')?.[1];
-        console.log('countLabel', countLabel);
         // eslint-disable-next-line no-prototype-builtins
         if (mapCount.hasOwnProperty(countLabel)) {
           mapCount[countLabel].push(formData[key]);
@@ -154,21 +155,12 @@ function FormDetail(props) {
       content: <DetailTab idx={idx} items={tab} isLast={isLast} formData={formData} onSubmit={next} onBackTab={prev} />,
     };
   });
-  console.log('current', current);
 
   useEffect(() => {
-    console.log('group', Object.values(groupByField).length);
     if (current === Object.values(groupByField).length && !isEmpty(formData)) {
       onSubmit();
     }
   }, [current]);
-
-  const addRows = () => {
-    // const range = 'Form Sumit!A2';
-    // const spreadsheetId = '1QChy36UZeI144jl5NrCASWJsi5s74M28F1iwfcYInnE';
-    // const values = [];
-    // serverFunctions.mainAppendData(values, spreadsheetId, range);
-  };
 
   const items = Object.keys(groupByField).map((item, index) => ({
     key: index,

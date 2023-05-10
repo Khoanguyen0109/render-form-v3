@@ -23,10 +23,14 @@ function Project(props) {
       const res = await axios.get(
         // 'https://script.google.com/macros/s/AKfycbwc6zsfumMrVjMwaSnku8NZxL2t5WJjtBK2LlXSkzx1CGptTvtjc4EBl5sBxnYqXJdgXQ/exec'
         `${process.env.REACT_APP_API_END_POINT}/api/form-template`,
+        {
+          params: {
+            username: localStorage.getItem('username'),
+          },
+        },
       );
       setData(res.data.data);
-      const unique = [...new Map(res.data.data.map((item) => [item.id_form_template, item])).values()];
-      setList(unique);
+      setList(res.data.data);
     } catch (error) {
       console.log('error', error);
     } finally {
