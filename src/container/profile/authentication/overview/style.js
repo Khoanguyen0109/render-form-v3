@@ -140,6 +140,12 @@ const AuthWrapper = Styled.div`
         margin-top: 35px;
       }
     }
+    .auth-icon {
+      margin-right: 8px;
+      svg {
+        color: black;
+      }
+    }
     .form-divider{
       font-size: 13px;
       color: ${({ theme }) => theme['gray-solid']};

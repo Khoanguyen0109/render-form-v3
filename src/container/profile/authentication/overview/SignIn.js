@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
 import { useSnackbar } from 'notistack';
+import FeatherIcon from 'feather-icons-react';
 import { AuthWrapper } from './style';
 import { login } from '../../../../redux/authentication/actionCreator';
 import { Checkbox } from '../../../../components/checkbox/checkbox';
@@ -50,12 +51,25 @@ function SignIn() {
             name="username"
             rules={[{ message: 'Vui lòng nhập tên đăng nhập', required: true }]}
             initialValue="admin"
-            label="Tên Đăng nhập"
+            // label="Tên Đăng nhập"
           >
-            <Input />
+            <Input
+              prefix={
+                <span className='auth-icon'>
+                  <FeatherIcon size={20} icon="user" />
+                </span>
+              }
+            />
           </Form.Item>
-          <Form.Item name="password" initialValue="123456" label="Mật Khẩu">
-            <Input.Password placeholder="Password" />
+          <Form.Item name="password" initialValue="123456">
+            <Input.Password
+              placeholder="Password"
+              prefix={
+                <span className='auth-icon'>
+                  <FeatherIcon size={20} icon="lock" />
+                </span>
+              }
+            />
           </Form.Item>
           {/* <div className="auth-form-action">
             <Checkbox onChange={onChange}>Keep me logged in</Checkbox>
