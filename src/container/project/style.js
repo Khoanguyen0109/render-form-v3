@@ -245,6 +245,7 @@ const ProjectSorting = Styled.div`
 const ProjectCard = Styled.div`
     .ant-card-body{
         padding: 0px !important;
+        background-color:  ${props => props.color ? props.color : 'white'} 
     }
     .project-top{
         padding:30px 30px 0px;

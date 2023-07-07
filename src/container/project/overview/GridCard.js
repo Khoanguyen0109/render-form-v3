@@ -14,11 +14,11 @@ import { ProjectCard } from '../style';
 function GridCard({ value }) {
   const { path } = useRouteMatch();
   const history = useHistory();
-  const { id_form_template, name_form, status, des_form } = value;
+  const { id_form_template, name_form, status, des_form, color } = value;
   
   const go = () => {};
   return (
-    <ProjectCard>
+    <ProjectCard color={color}>
       <Cards headless>
         <div className="project-top">
           <div className="project-title">
