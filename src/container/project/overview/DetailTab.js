@@ -39,69 +39,78 @@ function DetailTab(props) {
       // eslint-disable-next-line no-eval
       // hidden: i.condition_true !=='' ? eval(i.condition_true) : false
     };
-    switch (i.field) {
-      case 'input':
-        return (
-          <Form.Item {...itemProps}>
-            <Input placeholder={i.placeholder} type={i.type} />
-          </Form.Item>
-        );
-      case 'select':
-        return (
-          <Form.Item {...itemProps}>
-            <Select style={{ width: '100%' }}>
-              {i.option.split('/').map((option, index) => (
-                <Option key={option} value={index}>
-                  {option}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-        );
-      case 'date':
-        return (
-          <Form.Item {...itemProps}>
-            <DatePicker />
-          </Form.Item>
-        );
-      case 'radio':
-        return (
-          <Form.Item {...itemProps}>
-            <Radio.Group>
-              {i.option.split('/').map((option, index) => (
-                <Radio key={option} value={index}>
-                  {' '}
-                  option{' '}
-                </Radio>
-              ))}
-            </Radio.Group>
-          </Form.Item>
-        );
+    if (i.field) {
+      switch (i.field) {
+        case 'input':
+          return (
+            <Form.Item {...itemProps}>
+              <Input placeholder={i.placeholder} type={i.type} />
+            </Form.Item>
+          );
+        case 'select':
+          return (
+            <Form.Item {...itemProps}>
+              <Select style={{ width: '100%' }}>
+                {i.option.split('/').map((option, index) => (
+                  <Option key={option} value={index}>
+                    {option}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          );
+        case 'date':
+          return (
+            <Form.Item {...itemProps}>
+              <DatePicker />
+            </Form.Item>
+          );
+        case 'radio':
+          if (i.option && i.option.split('/').length > 0) {
+            return (
+              <Form.Item {...itemProps}>
+                <Radio.Group>
+                  {i.option.split('/').map((option, index) => (
+                    <Radio key={option} value={index}>
+                      {' '}
+                      option{' '}
+                    </Radio>
+                  ))}
+                </Radio.Group>
+              </Form.Item>
+            );
+          }
+          return <></>
 
-      case 'text-area': {
-        return (
-          <Form.Item {...itemProps}>
-            <TextArea rows={4} />
-          </Form.Item>
-        );
+        case 'text-area': {
+          return (
+            <Form.Item {...itemProps}>
+              <TextArea rows={4} />
+            </Form.Item>
+          );
+        }
+        case 'address': {
+          return (
+            <Form.Item {...itemProps}>
+              <AddressFromField />
+            </Form.Item>
+          );
+        }
+        case 'checkbox-table': {
+          if (i.option && i.option.split('/').length > 0) {
+            return (
+              <Form.Item {...itemProps} required={false} rules={{ required: false }}>
+                <RadioGroup option={i.option.split('/')} />
+              </Form.Item>
+            );
+          }
+          return <></>;
+        }
+        default:
+          break;
       }
-      case 'address': {
-        return (
-          <Form.Item {...itemProps}>
-            <AddressFromField />
-          </Form.Item>
-        );
-      }
-      case 'checkbox-table': {
-        return (
-          <Form.Item {...itemProps} required={false} rules={{ required: false }}>
-            <RadioGroup option={i.option.split('/')} />
-          </Form.Item>
-        );
-      }
-      default:
-        break;
     }
+    return <></>;
   };
   const renderItem = (item) => {
     if (item.length > 1) {
