@@ -1,11 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Row, Col, Spin, Card, Button, Steps, Drawer } from 'antd';
-import { Switch, Route, NavLink, useRouteMatch, useParams, Link } from 'react-router-dom';
+import { Switch, Route, NavLink, useRouteMatch, useParams, Link, useHistory, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import FeatherIcon from 'feather-icons-react';
 import propTypes, { array } from 'prop-types';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { groupBy, isEmpty, mapValues } from 'lodash';
 import qs from 'qs';
 import axios from 'axios';
@@ -23,14 +22,15 @@ function FormDetail(props) {
   const [list, setList] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [dynamicFormField, setDynamicFormField] = useState([])
   const params = useParams();
+  const {search} = useLocation();
+  const formName = new URLSearchParams(search).get('formName');
   const history = useHistory();
   const [current, setCurrent] = useState(0);
   const [formData, setFormData] = useState({});
   const [open, setOpen] = useState(false);
   const formFields = data.filter((item) => item.id_form_template === params.formId);
-  const formName = formFields[0]?.name_form;
   const onBack = () => {
     history.push('/admin');
   };
@@ -59,7 +59,6 @@ function FormDetail(props) {
   //   var grouped = mapValues(groupBy(formFields, 'steps'), (clist) =>
   //   clist.map((item) => mapValues(groupBy(item, 'name_field'), (item) => item))
   // );
-
   const groupByField = Object.values(grouped).map((item) => groupBy(item, 'name_field'));
 
   const next = (value) => {
@@ -150,7 +149,6 @@ function FormDetail(props) {
 
   const steps = Object.values(groupByField).map((tab, idx) => {
     const isLast = idx === Object.values(groupByField).length - 1;
-    console.log('isLast :>> ', isLast);
     return {
       content: <DetailTab idx={idx} items={tab} isLast={isLast} formData={formData} onSubmit={next} onBackTab={prev} />,
     };

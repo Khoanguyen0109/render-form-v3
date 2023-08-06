@@ -44,11 +44,11 @@ function ProviderConfig() {
   useEffect(()=>{
     if(localStorage.getItem('userId') && localStorage.getItem('username')){
       dispatch(actions.loginSuccess({ id: localStorage.getItem('userId'), username: localStorage.getItem('userName') }));
-
+      
     }
   },[])
 
-  
+  console.log('isLoggedIn', isLoggedIn)
 
   return (
     <SnackbarProvider autoHideDuration={2000}>

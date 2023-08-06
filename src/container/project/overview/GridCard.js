@@ -15,7 +15,7 @@ function GridCard({ value }) {
   const { path } = useRouteMatch();
   const history = useHistory();
   const { id_form_template, name_form, status, des_form, color } = value;
-  
+
   const go = () => {};
   return (
     <ProjectCard color={color}>
@@ -23,7 +23,7 @@ function GridCard({ value }) {
         <div className="project-top">
           <div className="project-title">
             <h1>
-              <Link to={`/admin/${id_form_template}`}>{name_form}</Link>
+              <Link to={`/admin/${id_form_template}?formName=${name_form}`}>{name_form}</Link>
               {/* <Link to={`${path}/${id_form_template}`}>{name_form}</Link> */}
 
               <Tag className={status === 'Hoạt động' ? 'complete' : status}>{status}</Tag>
@@ -40,12 +40,7 @@ function GridCard({ value }) {
               </Link>
             </Dropdown>
           </div>
-          <p className="project-desc">
-            {des_form && textRefactor(
-              des_form,
-              15,
-            )}
-          </p>
+          <p className="project-desc">{des_form && textRefactor(des_form, 15)}</p>
           <div className="project-timing">
             <div>
               <span>Ngày tạo</span>

@@ -37,7 +37,6 @@ function SubmittedDetail() {
       result.forEach((item) => {
         map[item.idField] = item.value;
       });
-      console.log('map :>> ', map);
       setFormData(map);
       setForm(res.data.form);
     } catch (error) {

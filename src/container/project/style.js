@@ -244,6 +244,7 @@ const ProjectSorting = Styled.div`
 
 const ProjectCard = Styled.div`
     .ant-card-body{
+        min-height: 240px
         padding: 0px !important;
         background-color:  ${props => props.color ? props.color : 'white'} 
     }

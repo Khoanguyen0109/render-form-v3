@@ -77,37 +77,6 @@ function SubmittedList() {
           <Col xs={24}>
             <SubmitSorting>
               <div className="submit-sort-bar">
-                <div className="submit-sort-nav">
-                  {/* <nav>
-                  <ul>
-                    <li className={category === 'all' ? 'active' : 'deactivate'}>
-                      <Link onClick={() => onChangeCategory('all')} to="#">
-                        All
-                      </Link>
-                    </li>
-                    <li className={category === 'progress' ? 'active' : 'deactivate'}>
-                      <Link onClick={() => onChangeCategory('progress')} to="#">
-                        In Progress
-                      </Link>
-                    </li>
-                    <li className={category === 'complete' ? 'active' : 'deactivate'}>
-                      <Link onClick={() => onChangeCategory('complete')} to="#">
-                        Complete
-                      </Link>
-                    </li>
-                    <li className={category === 'late' ? 'active' : 'deactivate'}>
-                      <Link onClick={() => onChangeCategory('late')} to="#">
-                        Late
-                      </Link>
-                    </li>
-                    <li className={category === 'early' ? 'active' : 'deactivate'}>
-                      <Link onClick={() => onChangeCategory('early')} to="#">
-                        Early
-                      </Link>
-                    </li>
-                  </ul>
-                </nav> */}
-                </div>
                 <div className="submit-sort-search">
                   <Search
                     value={search}
@@ -116,28 +85,6 @@ function SubmittedList() {
                     onSearch={onSearch}
                     style={{ width: '100%', marginBottom: '20px' }}
                   />
-                </div>
-                <div className="submit-sort-group">
-                  <div className="sort-group">
-                    {/* <span>Sort By:</span>
-                  <Select onChange={onSorting} defaultValue="category">
-                    <Select.Option value="category">
-                      Project Category
-                    </Select.Option>
-                    <Select.Option value="rate">Top Rated</Select.Option>
-                    <Select.Option value="popular">Popular</Select.Option>
-                    <Select.Option value="time">Newest</Select.Option>
-                    <Select.Option value="price">Price</Select.Option>
-                  </Select> */}
-                    {/* <div className="layout-style">
-                    <NavLink to={`${path}/grid`}>
-                      <FeatherIcon icon="grid" size={16} />
-                    </NavLink>
-                    <NavLink to={`${path}/list`}>
-                      <FeatherIcon icon="list" size={16} />
-                    </NavLink>
-                  </div> */}
-                  </div>
                 </div>
               </div>
             </SubmitSorting>
